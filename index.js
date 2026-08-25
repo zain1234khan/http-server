@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const url = require("url");
 
-const myserver = http.createServer((req, res) => {
+function myhandler(req, res) {
 
     if (req.url === "/favicon.ico") return res.end();
 
@@ -51,7 +51,9 @@ const myserver = http.createServer((req, res) => {
         default:
             res.end("404 Not Found");
     }
-});
+    
+}
+const myserver = http.createServer(myhandler);
 
 myserver.listen(8000, () => {
     console.log("Server started!");
